@@ -1,0 +1,251 @@
+package cashRegister;
+import java.util.Scanner;
+
+public class Machine {
+	
+	int counter; 
+	
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+				
+		// constant variables
+		double total = 0;
+		double ctotal = 0;
+		double ttotal = 0;
+		double salestax = .0725;
+		double newtotal = 0;
+		double newertotal = 0;
+		double moneyin = 0;
+		double changereturn = 0;
+		double converttotal = 0;
+		int moneycounter = 0;
+		int couponcounter = 0;
+		int taxcounter = 0;
+		double cashowed = 0;
+		double cashkeep = 0;
+		double cashremainder = 0; 
+		double cashleft = 0;
+		int changecounter = 0;
+		
+		// declared variables 
+		double totalaftertax;
+		double taxamount;
+		// below are cash variables
+		
+		//constant variables (money)
+		double twenty = 20;
+		double ten = 10;
+		double five = 5;
+		double one = 1;
+		double quarter = .25;
+		double dime = .10;
+		double nickel = .05;
+		double penny = .01;
+		
+		
+		
+		System.out.println("Enter in your prices, and/or type 0 to quit.");
+		double money = input.nextDouble();
+		
+		while (money != 0 )
+		{
+			moneycounter++;
+			total += money;
+			System.out.print("Enter in your prices, and/or type 0 to quit.");
+			money = input.nextDouble();	
+		}
+		
+		if (moneycounter != 0)
+			{
+			System.out.printf("Your SubTotal is $%.2f", total);
+			}
+		else 
+			System.out.println("Come back when you actually have money LOL");
+		
+		/* ________You should have Money Total by here_________________________________________________ */
+		
+		
+		System.out.println("\nEnter in your coupons as prices, and/or type 0 to quit.");
+		double coupon = input.nextDouble();
+		
+		while (coupon != 0)
+		{
+			couponcounter++;
+			ctotal += coupon;
+			System.out.print("Enter in your coupons as prices, and/or type 0 to quit.");
+			coupon = input.nextDouble();	
+			
+		}
+		
+		if (couponcounter != 0)
+		{
+			System.out.println("________________________________________");
+			System.out.printf("The amount you saved  is $%.2f\n", ctotal);
+			newtotal = total- ctotal;
+			System.out.printf("Your new subtotal is $%.2f\n", newtotal);
+		}
+		else 
+		{
+			System.out.println("You have no coupons.");
+			newtotal = total- ctotal;
+		}
+		
+		/* ________You should have Money and Coupon Total by here_________________________________________________ */
+	
+		
+		taxamount = newtotal * salestax;
+		totalaftertax = newtotal + taxamount;
+		
+		System.out.println("________________________________________");
+		System.out.printf("\nYour total tax is $%.2f.\n", taxamount);
+		System.out.printf("Your Final Total is $%.2f.\n", totalaftertax);
+		
+	
+	/* System.out.printf("Final Total is: %.2f", finaltotal);
+	System.out.printf("Money counter is %d", moneycounter);
+				*/
+
+		/* ________You should have Money, Coupon, and Final Total by here_________________________________________________ */
+		
+		
+		System.out.println("________________________________________");
+		System.out.println("How much are you paying with? Enter in a single value.");
+		moneyin = input.nextDouble();
+		
+		
+		converttotal =  moneyin - totalaftertax;
+		
+		System.out.printf("Your change is %.2f\n", converttotal);
+		
+		while (converttotal >= 20)
+			{
+			converttotal = converttotal - twenty;
+			changecounter++;
+			}
+		
+		if (changecounter != 0)
+			{
+			cashowed = changecounter * twenty;
+			System.out.printf("The amount of twenties you will recieve is %d\n", changecounter);
+			}
+		
+		//____________________________
+		changecounter = 0;
+		while (converttotal >= 10)
+		{
+			converttotal = converttotal - ten;
+			changecounter++;
+		}
+		
+		if (changecounter != 0)
+			{
+			cashowed = changecounter * ten;
+			System.out.printf("The amount of tens you will recieve is %d\n", changecounter);
+			}
+		
+		//____________________________
+		changecounter = 0;
+		while (converttotal >= 5)
+			{
+			converttotal = converttotal - five;
+			changecounter++;
+			}
+		
+		if (changecounter != 0)
+			{
+			cashowed = changecounter * five;
+			System.out.printf("The amount of fives you will recieve is %d\n", changecounter);
+			}
+		
+		//____________________________
+		changecounter = 0;
+		while (converttotal >= 1)
+			{
+			converttotal = converttotal - one;
+			changecounter++;
+			}
+		
+		if (changecounter != 0)
+			{	
+			cashowed = changecounter * one;
+			System.out.printf("The amount of ones you will recieve is %d\n", changecounter);
+			}
+			
+		//____________________________
+		changecounter = 0;
+		while (converttotal >= 1)
+			{
+			converttotal = converttotal - one;
+			changecounter++;
+			}
+			
+		if (changecounter != 0)
+			{	
+			cashowed = changecounter * one;
+			System.out.printf("The amount of ones you will recieve is %d\n", changecounter);
+			}
+			
+			//____________________________
+			changecounter = 0;
+			while (converttotal >= .25)
+				{
+				converttotal = converttotal - quarter;
+				changecounter++;
+				}
+			
+			if (changecounter != 0)
+				{	
+				cashowed = changecounter * quarter;
+				System.out.printf("The amount of quarters you will recieve is %d\n", changecounter);
+				}
+			
+			//____________________________
+			changecounter = 0;
+			while (converttotal >= .1)
+				{
+				converttotal = converttotal - dime;
+				changecounter++;
+				}
+			
+			if (changecounter != 0)
+				{	
+				cashowed = changecounter * dime;
+				System.out.printf("The amount of dimes you will recieve is %d\n", changecounter);
+				}
+			
+			//____________________________
+			changecounter = 0;
+			while (converttotal >= .05)
+				{
+				converttotal = converttotal - nickel;
+				changecounter++;
+				}
+			
+			if (changecounter != 0)
+				{	
+				cashowed = changecounter * nickel;
+				System.out.printf("The amount of nickels you will recieve is %d\n", changecounter);
+				}
+				
+			//____________________________
+			changecounter = 0;
+			while (converttotal >= .01)
+				{
+				converttotal = converttotal - penny;
+				changecounter++;
+				}
+				
+			if (changecounter != 0)
+				{	
+				cashowed = changecounter * penny;
+				System.out.printf("The amount of pennies you will recieve is %d\n", changecounter);
+				}
+			System.out.println("----------------------");
+			System.out.println("*** END OF PROGRAM ***");
+	}
+	
+	
+
+}
+
